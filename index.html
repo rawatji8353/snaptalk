@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d24">
+  <title>SnapTalk</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <header>
+    <h2>✦ SnapTalk</h2>
+    <button id="shareBtn">↗ Share</button>
+  </header>
+
+  <main id="app">
+    <section id="login">
+      <div class="logo">✦</div>
+      <h1>Welcome to <span>SnapTalk</span></h1>
+      <p>Your friends, your space.</p>
+      <input id="phone" placeholder="+91 Phone number">
+      <button id="loginBtn">Continue</button>
+      <p id="status">Online chatting starts here.</p>
+    </section>
+
+    <section id="home" hidden>
+      <h1>Chats ✨</h1>
+      <input id="search" placeholder="Search username">
+      <div id="searchResults"></div>
+      <h3>Recent chats</h3>
+      <div id="chatList">No chats yet.</div>
+    </section>
+
+    <section id="chat" hidden>
+      <button id="backBtn">← Back</button>
+      <h2 id="friendName">Friend</h2>
+      <div id="messages"></div>
+      <form id="messageForm">
+        <input id="messageInput" placeholder="Write a message..." autocomplete="off">
+        <button type="submit">➤</button>
+      </form>
+    </section>
+  </main>
+
+  <nav>
+    <button data-tab="home">▤<br>Chat</button>
+    <button data-tab="stories">◉<br>Stories</button>
+    <button data-tab="profile">♙<br>Profile</button>
+    <button data-tab="settings">⚙<br>Settings</button>
+  </nav>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
