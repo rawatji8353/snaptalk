@@ -1,0 +1,138 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #f5f5ff;
+  background:
+    radial-gradient(circle at top left, #302052, transparent 40%),
+    radial-gradient(circle at bottom right, #183c65, transparent 40%),
+    #080d24;
+  min-height: 100vh;
+}
+
+header {
+  height: 65px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #101832;
+  border-bottom: 1px solid #344064;
+}
+
+header h2 {
+  color: #e8a0ed;
+}
+
+button {
+  border: none;
+  padding: 12px 17px;
+  border-radius: 12px;
+  color: white;
+  background: linear-gradient(120deg, #687fe8, #bb6bd0);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+main {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+#login {
+  margin-top: 65px;
+  padding: 25px;
+  text-align: center;
+  border: 1px solid #39446b;
+  border-radius: 25px;
+  background: #111a36;
+  box-shadow: 0 10px 40px #0005;
+}
+
+.logo {
+  font-size: 55px;
+  color: #ed9de8;
+}
+
+h1 span {
+  color: #d99be9;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #39446b;
+  border-radius: 12px;
+  background: #080f27;
+  color: white;
+  outline: none;
+}
+
+#loginBtn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+#status {
+  color: #9caed5;
+  font-size: 13px;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 4px;
+  background: #101832;
+  border-top: 1px solid #344064;
+}
+
+nav button {
+  background: transparent;
+  color: #d9c7f5;
+  font-size: 12px;
+  padding: 8px;
+}
+
+#messages {
+  height: 55vh;
+  overflow-y: auto;
+  margin: 15px 0;
+  padding: 12px;
+  background: #111a36;
+  border-radius: 18px;
+}
+
+#messages p {
+  padding: 12px;
+  background: #394c85;
+  border-radius: 14px;
+  overflow-wrap: anywhere;
+}
+
+#messageForm {
+  display: flex;
+  gap: 8px;
+}
+
+#messageForm input {
+  flex: 1;
+  min-width: 0;
+}
+
+#messageForm button {
+  margin-top: 10px;
+}
+
+[hidden] {
+  display: none !important;
+}
