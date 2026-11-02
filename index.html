@@ -2,106 +2,253 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090d24">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b1d">
   <title>SnapTalk</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header>
-    <h2>✦ SnapTalk</h2>
-    <button id="shareBtn">↗ Share</button>
-  </header>
 
-  <main>
-    <!-- APP LOCK -->
-    <section id="lockScreen" class="screen">
-      <div class="logo">✦</div>
-      <h1 id="lockTitle">SnapTalk is Locked</h1>
-      <p id="lockInfo">Unlock to continue</p>
+  <!-- APP LOCK -->
+  <section id="lockScreen" class="screen">
+    <div class="lock-card">
+      <div class="logo">S</div>
+      <h1>SnapTalk</h1>
+      <p>Your private space</p>
 
-      <div id="lockSetup" hidden>
-        <label for="lockType">Choose App Lock</label>
-        <select id="lockType">
-          <option value="pin">PIN</option>
-          <option value="password">Password</option>
-        </select>
-        <input id="newLock" type="password"
-          placeholder="Create PIN or password"
-          autocomplete="new-password">
-        <input id="confirmLock" type="password"
-          placeholder="Confirm PIN or password"
-          autocomplete="new-password">
-        <button id="saveLockBtn">Set App Lock</button>
+      <div id="lockSetup">
+        <h2>Create App Lock</h2>
+        <input id="newPin" type="password" inputmode="numeric"
+          placeholder="Create 4–8 digit PIN" maxlength="8">
+        <input id="confirmPin" type="password" inputmode="numeric"
+          placeholder="Confirm PIN" maxlength="8">
+        <button id="savePinBtn">Set App Lock</button>
       </div>
 
       <div id="lockUnlock" hidden>
-        <input id="unlockValue" type="password"
-          placeholder="Enter PIN or password"
-          autocomplete="current-password">
-        <button id="unlockBtn">Unlock</button>
+        <h2>Welcome Back</h2>
+        <input id="unlockPin" type="password" inputmode="numeric"
+          placeholder="Enter your PIN" maxlength="8">
+        <button id="unlockBtn">Unlock App</button>
       </div>
-      <p id="lockStatus" class="status"></p>
-    </section>
 
-    <!-- ACCOUNT LOGIN -->
-    <section id="login" class="screen" hidden>
-      <div class="logo">✦</div>
-      <h1>Welcome to <span>SnapTalk</span></h1>
-      <p>Your friends, your space.</p>
+      <p id="lockMessage" class="status"></p>
+    </div>
+  </section>
 
-      <input id="email" type="email" placeholder="Email address">
+  <!-- LOGIN -->
+  <section id="login" class="screen" hidden>
+    <div class="login-card">
+      <div class="logo">S</div>
+      <h1>SnapTalk</h1>
+      <p>Connect with your friends</p>
+
+      <input id="email" type="email" placeholder="Email address"
+        autocomplete="email">
+
       <input id="accountPassword" type="password"
-        placeholder="Account password">
+        placeholder="Password" autocomplete="current-password">
+
       <button id="loginBtn">Login</button>
-      <button id="signupBtn" class="secondary">Create account</button>
-      <p id="status" class="status">Login to continue.</p>
-    </section>
+      <button id="signupBtn" class="secondary">Create Account</button>
 
-    <!-- HOME -->
-    <section id="home" class="screen" hidden>
-      <h1>Chats ✨</h1>
-      <input id="search" placeholder="Search username">
-      <div id="searchResults"></div>
-      <h3>Recent chats</h3>
-      <div id="chatList">No chats yet.</div>
-      <button id="logoutBtn" class="secondary">Logout</button>
-    </section>
+      <p id="authStatus" class="status"></p>
+    </div>
+  </section>
 
-    <section id="chat" class="screen" hidden>
-      <button id="backBtn" class="secondary">← Back</button>
-      <h2 id="friendName">Friend</h2>
-      <div id="messages"></div>
-      <form id="messageForm">
-        <input id="messageInput" placeholder="Write a message..."
-          autocomplete="off">
-        <button type="submit">➤</button>
-      </form>
-    </section>
+  <!-- MAIN APP -->
+  <section id="home" class="app-screen" hidden>
 
-    <section id="stories" class="screen" hidden>
-      <h1>Stories</h1>
-      <p>Stories feature will be added in the next stage.</p>
-    </section>
+    <header class="topbar">
+      <div>
+        <h1>SnapTalk <span>✦</span></h1>
+        <p>Stay connected</p>
+      </div>
+      <button id="lockNowBtn" class="icon-button" title="Lock app">🔒</button>
+    </header>
 
-    <section id="profile" class="screen" hidden>
-      <h1>Profile</h1>
-      <p>Your SnapTalk profile will appear here.</p>
-    </section>
+    <!-- CHAT TAB -->
+    <main id="chatTab" class="tab-page">
 
-    <section id="settings" class="screen" hidden>
-      <h1>Settings</h1>
-      <p>Privacy and app settings will appear here.</p>
-    </section>
-  </main>
+      <div class="section-heading">
+        <h2>Messages</h2>
+        <span class="online-dot"></span>
+      </div>
 
-  <nav id="bottomNav" hidden>
-    <button data-tab="home">▤<br>Chat</button>
-    <button data-tab="stories">◉<br>Stories</button>
-    <button data-tab="profile">♙<br>Profile</button>
-    <button data-tab="settings">⚙<br>Settings</button>
-  </nav>
+      <div class="search-box">
+        <span>⌕</span>
+        <input id="searchChats" type="search"
+          placeholder="Search conversations">
+      </div>
+
+      <div class="start-chat-card">
+        <h3>Start a conversation</h3>
+        <p>Enter your friend's Firebase User ID to find their chat.</p>
+        <input id="friendUid" type="text" placeholder="Friend's User ID">
+        <button id="startChatBtn">Start Chat</button>
+        <p id="chatStatus" class="status"></p>
+      </div>
+
+      <h3 class="subheading">Recent Chats</h3>
+      <div id="chatList" class="chat-list">
+        <p class="empty-state">Your conversations will appear here.</p>
+      </div>
+
+      <!-- CHAT ROOM -->
+      <section id="chatRoom" class="chat-room" hidden>
+        <header class="chat-header">
+          <button id="backToChats" class="icon-button">←</button>
+          <div class="chat-person">
+            <div class="avatar">S</div>
+            <div>
+              <h3 id="chatTitle">Friend</h3>
+              <small id="chatSubtitle">SnapTalk chat</small>
+            </div>
+          </div>
+          <div class="chat-call-buttons">
+            <button id="voiceCallBtn" class="icon-button"
+              title="Voice call">📞</button>
+            <button id="videoCallBtn" class="icon-button"
+              title="Video call">📹</button>
+          </div>
+        </header>
+
+        <div id="messages" class="messages">
+          <p class="empty-state">Messages will appear here.</p>
+        </div>
+
+        <div class="message-tools">
+          <button id="emojiBtn" class="icon-button" title="Add emoji">😊</button>
+          <button id="attachBtn" class="icon-button"
+            title="Attach media">＋</button>
+          <input id="mediaInput" type="file" accept="image/*,video/*"
+            hidden>
+        </div>
+
+        <form id="messageForm" class="message-form">
+          <input id="messageInput" type="text"
+            placeholder="Write a message..." maxlength="2000"
+            autocomplete="off">
+          <button type="submit" id="sendBtn">➤</button>
+        </form>
+
+        <p id="messageStatus" class="status"></p>
+      </section>
+    </main>
+
+    <!-- STORIES TAB -->
+    <main id="storiesTab" class="tab-page" hidden>
+      <div class="section-heading">
+        <h2>Stories</h2>
+        <span>✦</span>
+      </div>
+
+      <div class="story-create-card">
+        <div class="story-circle">＋</div>
+        <div>
+          <h3>Create a Story</h3>
+          <p>Share a moment with your friends.</p>
+        </div>
+      </div>
+
+      <button id="createStoryBtn">Create Story</button>
+      <div id="storyList" class="story-list">
+        <p class="empty-state">No stories yet.</p>
+      </div>
+      <p class="notice">Story upload and 24-hour expiry need additional backend setup.</p>
+    </main>
+
+    <!-- PROFILE TAB -->
+    <main id="profileTab" class="tab-page" hidden>
+      <div class="profile-card">
+        <div class="profile-avatar" id="profileAvatar">S</div>
+        <h2 id="profileName">My Profile</h2>
+        <p id="profileEmail">Your email</p>
+        <p id="myUid" class="uid-text"></p>
+        <button id="copyUidBtn" class="secondary">Copy My User ID</button>
+      </div>
+
+      <div class="settings-card">
+        <h3>Profile Information</h3>
+        <label for="displayName">Display name</label>
+        <input id="displayName" type="text" placeholder="Your name"
+          maxlength="40">
+
+        <label for="bio">Bio</label>
+        <textarea id="bio" placeholder="Write something about yourself"
+          maxlength="160"></textarea>
+
+        <button id="saveProfileBtn">Save Profile</button>
+        <p id="profileStatus" class="status"></p>
+      </div>
+    </main>
+
+    <!-- SETTINGS TAB -->
+    <main id="settingsTab" class="tab-page" hidden>
+      <h2>Settings</h2>
+
+      <div class="settings-card">
+        <h3>Privacy</h3>
+        <label class="setting-row">
+          <span>Show online status</span>
+          <input id="onlineSetting" type="checkbox" checked>
+        </label>
+        <label class="setting-row">
+          <span>Read receipts</span>
+          <input id="readReceiptSetting" type="checkbox" checked>
+        </label>
+      </div>
+
+      <div class="settings-card">
+        <h3>App</h3>
+        <button id="changePinBtn" class="secondary">Change App Lock PIN</button>
+        <button id="logoutBtn" class="danger">Logout</button>
+      </div>
+
+      <p class="notice">Privacy controls will need matching database rules before they affect other users.</p>
+    </main>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-tab="chatTab">
+        <span>💬</span>
+        <small>Chat</small>
+      </button>
+
+      <button class="nav-btn" data-tab="storiesTab">
+        <span>◉</span>
+        <small>Stories</small>
+      </button>
+
+      <button class="nav-btn" data-tab="profileTab">
+        <span>♙</span>
+        <small>Profile</small>
+      </button>
+
+      <button class="nav-btn" data-tab="settingsTab">
+        <span>⚙</span>
+        <small>Settings</small>
+      </button>
+    </nav>
+  </section>
+
+  <!-- CALL SCREEN: UI PLACEHOLDER -->
+  <section id="callScreen" class="call-screen" hidden>
+    <div class="call-card">
+      <div class="call-avatar">S</div>
+      <h2 id="callName">SnapTalk Call</h2>
+      <p id="callStatus">Calling features need WebRTC setup.</p>
+
+      <div class="call-controls">
+        <button id="muteCallBtn">🎙 Mute</button>
+        <button id="switchCameraBtn">🔄 Camera</button>
+        <button id="endCallBtn" class="danger">End Call</button>
+      </div>
+    </div>
+  </section>
 
   <script type="module" src="app.js"></script>
 </body>
-</html>
+        </html>
+      
